@@ -3,3 +3,7 @@ x64
 *.sdf
 Project/ProjectFiles/SFML_Project/.vs/SFML_Project/v14/.suo
 Project/ProjectFiles/SFML_Project/SFML_Project.sdf
+Project/ProjectFiles/SFML_Project/x64/Debug/vc140.idb
+Project/ProjectFiles/SFML_Project/x64/Debug/vc140.pdb
+Project/ProjectFiles/SFML_Project/x64/Debug/vc141.idb
+Project/ProjectFiles/SFML_Project/x64/Debug/vc141.pdb
