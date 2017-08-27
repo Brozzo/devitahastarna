@@ -4,6 +4,7 @@
 
 #include <cmath>
 
+
 CShip::~CShip()
 {
 }
@@ -71,7 +72,7 @@ void CShip::SetSprite( std::unique_ptr<sf::Sprite> pSprite )
 
 namespace NVectorMath
 {
-	constexpr float pi = 2.71828f;
+	constexpr float pi = 3.141592f;
 	template<typename SFMLVector2D>
 	auto operator*( const SFMLVector2D& v, const SFMLVector2D& u )
 	{
