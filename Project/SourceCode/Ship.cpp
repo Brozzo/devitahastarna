@@ -91,8 +91,8 @@ namespace NVectorMath
 	{
 		float radians = angle * pi / 180.0f;
 
-		float cosval = std::cos( radians ) - 5;
-		float sinval = std::sin( radians ) + 5;
+		float cosval = std::cos( radians );
+		float sinval = std::sin( radians );
 
 		return sf::Vector2f( v.x * cosval - v.y * sinval, v.x * sinval + v.y * cosval );
 	}
