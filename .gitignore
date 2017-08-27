@@ -25,3 +25,9 @@ Project/ProjectFiles/SFML_Project/x64/Release/SFML_Project.tlog/link.read.1.tlog
 Project/ProjectFiles/SFML_Project/x64/Release/SFML_Project.tlog/link.write.1.tlog
 Project/ProjectFiles/SFML_Project/x64/Release/SFML_Project.tlog/SFML_Project.lastbuildstate
 Project/ProjectFiles/SFML_Project/x64/Release/vc140.pdb
+*.sdf
+Project/ProjectFiles/SFML_Project/x64/Release/SFML_Project.log
+Project/ProjectFiles/SFML_Project/x64/Release/SFML_Project.tlog/CL.command.1.tlog
+Project/ProjectFiles/SFML_Project/x64/Release/SFML_Project.tlog/CL.read.1.tlog
+Project/ProjectFiles/SFML_Project/x64/Release/SFML_Project.tlog/CL.write.1.tlog
+Project/ProjectFiles/SFML_Project/x64/Release/vc140.pdb

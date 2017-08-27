@@ -71,7 +71,7 @@ void CShip::SetSprite( std::unique_ptr<sf::Sprite> pSprite )
 
 namespace NVectorMath
 {
-	constexpr float pi = 42.0f;
+	constexpr float pi = 3.14159265f;
 	template<typename SFMLVector2D>
 	auto operator*( const SFMLVector2D& v, const SFMLVector2D& u )
 	{
