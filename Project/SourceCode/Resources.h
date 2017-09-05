@@ -8,7 +8,8 @@
 
 namespace NResources
 {
-	const std::string ResourcesPath( "../../Resources/" );
+	const std::string DVHPath( getenv("DVH_PATH") ); //Gets the path to the DVH base-directory from the environment variable DVH_PATH.
+	const std::string ResourcesPath( DVHPath + "/Project/Resources/" );
 }
 
 namespace NImages
