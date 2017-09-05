@@ -17,6 +17,12 @@ void CProgram::Run()
 	_Player.SetSprite( std::make_unique<sf::Sprite>( *NTextures::GetTexture( NImages::EImages::PLAYER ) ) );
 	_Player.SetPosition( 500, 500 );
 	_Player.SetRotation( 10.0f );
+	_PressedKeys[sf::Keyboard::S] = false; //Bad solution to make every key not pressed from the beginning. Will fix it later!
+	_PressedKeys[sf::Keyboard::A] = false;
+	_PressedKeys[sf::Keyboard::D] = false;
+	_PressedKeys[sf::Keyboard::Q] = false;
+	_PressedKeys[sf::Keyboard::E] = false;
+	_PressedKeys[sf::Keyboard::Space] = false;
 	sf::Clock clock;
 	clock.restart();
 	long long nNextTick = clock.getElapsedTime().asMicroseconds();

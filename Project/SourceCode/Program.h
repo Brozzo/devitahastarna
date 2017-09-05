@@ -30,7 +30,7 @@ private:
 
 	std::unique_ptr<sf::RenderWindow>						_pSFWindow;
 	std::array< bool, sf::Keyboard::KeyCount >				_PressedKeys;
-	CShip												_Player;
+	CShip													_Player;
 };
 
 template<typename ...T>
