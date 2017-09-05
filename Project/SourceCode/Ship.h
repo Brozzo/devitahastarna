@@ -23,7 +23,7 @@ public:
 	static SEngine LeftBackEngine( const CShip& Ship );
 	static SEngine RightBackEngine( const CShip& Ship );
 
-	CShip::~CShip();
+	~CShip();
 	void								Update();
 
 	void								SetSprite( std::unique_ptr<sf::Sprite> pSprite );
