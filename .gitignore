@@ -1,3 +1,9 @@
+
+SFML*/
+
+
+#Martin:
+
 x64
 *.opensdf
 *.sdf
@@ -32,3 +38,8 @@ Project/ProjectFiles/SFML_Project/x64/Release/SFML_Project.tlog/CL.read.1.tlog
 Project/ProjectFiles/SFML_Project/x64/Release/SFML_Project.tlog/CL.write.1.tlog
 Project/ProjectFiles/SFML_Project/x64/Release/vc140.pdb
 ProjectFiles
+
+
+#Christoffer:
+
+bin/
