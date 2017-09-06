@@ -1,6 +1,7 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 
 #include <string>
 #include <memory>
@@ -31,4 +32,28 @@ namespace NTextures
 	extern std::array< std::unique_ptr<sf::Texture>, size_t( EImages::NUM_OF_IMAGES ) > Textures;
 	sf::Texture* GetTexture( EImages image );
 	void CreateTextures();
+}
+
+namespace NMusic
+{
+	using namespace NResources;
+	const std::string MusicPath( ResourcesPath + "Music/" );
+	enum class EMusic
+	{
+		MAIN_THEME,
+		NUM_OF_MUSIC,
+	};
+	const std::string& GetFullPath( EMusic music );
+}
+
+namespace NSounds
+{
+	using namespace NResources;
+	const std::string SoundsPath( ResourcesPath + "Sounds/" );
+	enum class ESounds
+	{
+		TEST_SOUND,
+		NUM_OF_SOUNDS,
+	};
+	const std::string& GetFullPath( ESounds sound );
 }

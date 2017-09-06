@@ -1,6 +1,8 @@
 #include "Program.h"
 #include "Resources.h"
 
+#include <cmath>
+
 
 void CProgram::SetSFWindow( std::unique_ptr<sf::RenderWindow> pNewWindow )
 {
@@ -23,6 +25,15 @@ void CProgram::Run()
 	_PressedKeys[sf::Keyboard::Q] = false;
 	_PressedKeys[sf::Keyboard::E] = false;
 	_PressedKeys[sf::Keyboard::Space] = false;
+	_Music.openFromFile( NMusic::GetFullPath( NMusic::EMusic::MAIN_THEME ));
+	_Music.setLoop(true);
+	_Music.play();
+	sf::SoundBuffer buffer;
+	buffer.loadFromFile( NSounds::GetFullPath( NSounds::ESounds::TEST_SOUND ));
+	_PlayerSound.setBuffer(buffer);
+	_PlayerSound.setLoop(true);
+	_PlayerSound.setVolume(50);
+	_PlayerSound.play();
 	sf::Clock clock;
 	clock.restart();
 	long long nNextTick = clock.getElapsedTime().asMicroseconds();
@@ -74,9 +85,20 @@ void CProgram::HandleKeyReleased( const sf::Event::KeyEvent& event )
 
 void CProgram::Update()
 {
+	sf::Vector2f ScreenCenter = { float( _pSFWindow->getSize().x ), float( _pSFWindow->getSize().y ) };
+	ScreenCenter *= 0.5f;
+	sf::Vector2f PlayerToCenter = ScreenCenter - _Player.GetPosition();
+	float velocity = sqrt(_Player.GetVelocity().x * _Player.GetVelocity().x + _Player.GetVelocity().y * _Player.GetVelocity().y);
+	
 	if ( _PressedKeys[sf::Keyboard::S] )
 	{
 		_Player.UseEngine( _Player.BaseEngine( _Player ) );
+		if ( _PlayerSound.getStatus() != 2 )
+			_PlayerSound.play();
+	}
+	else
+	{
+		_PlayerSound.pause();
 	}
 	if ( _PressedKeys[sf::Keyboard::A] )
 	{
@@ -96,11 +118,11 @@ void CProgram::Update()
 	}
 	if ( _PressedKeys[sf::Keyboard::Space] )
 	{
-		sf::Vector2f ScreenCenter = { float( _pSFWindow->getSize().x ), float( _pSFWindow->getSize().y ) };
-		ScreenCenter *= 0.5f;
-		_Player.Accelerate( (ScreenCenter - _Player.GetPosition()) * 0.0001f );
+		_Player.Accelerate( PlayerToCenter * 0.0001f );
 	}
 	_Player.Update();
+
+	_Music.setPitch( velocity / 10.0f + 1 );
 
 	std::vector<const sf::Sprite*> Sprites;
 	if ( const sf::Sprite* pPlayerSprite = _Player.GetSprite() )

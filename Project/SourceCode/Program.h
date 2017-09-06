@@ -3,6 +3,7 @@
 #include "Ship.h"
 
 #include <SFML/Window/Event.hpp>
+#include <SFML/Audio.hpp>
 
 #include <memory>
 #include <array>
@@ -31,6 +32,8 @@ private:
 	std::unique_ptr<sf::RenderWindow>						_pSFWindow;
 	std::array< bool, sf::Keyboard::KeyCount >				_PressedKeys;
 	CShip													_Player;
+	sf::Music												_Music;
+	sf::Sound												_PlayerSound;
 };
 
 template<typename ...T>

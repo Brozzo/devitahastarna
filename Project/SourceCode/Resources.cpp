@@ -5,6 +5,8 @@
 #include <string>
 
 using namespace NImages;
+using namespace NMusic;
+using namespace NSounds;
 
 const std::string& NImages::GetFullPath( EImages image )
 {
@@ -32,4 +34,24 @@ void NTextures::CreateTextures()
 
 	Textures[size_t( EImages::PLAYER )] = std::make_unique<sf::Texture>();
 	Textures[size_t( EImages::PLAYER )]->loadFromFile( GetFullPath( EImages::PLAYER ) );
+}
+
+const std::string& NMusic::GetFullPath( EMusic music )
+{
+	static const std::array< std::string, size_t( EMusic::NUM_OF_MUSIC ) > Paths
+	{
+		MusicPath + "main_theme.wav",
+	};
+	assert( size_t( music ) < Paths.size() );
+	return Paths[size_t( music )];
+}
+
+const std::string& NSounds::GetFullPath( ESounds sound )
+{
+	static const std::array< std::string, size_t( ESounds::NUM_OF_SOUNDS ) > Paths
+	{
+		SoundsPath + "bubbling.wav",
+	};
+	assert( size_t( sound ) < Paths.size() );
+	return Paths[size_t( sound )];
 }

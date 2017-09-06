@@ -33,6 +33,7 @@ public:
 	void								SetPosition( const sf::Vector2f& Position ) { _Position = Position; }
 	void								Accelerate( const sf::Vector2f& VelocityChange ) { _VelocityIncrease += VelocityChange; }
 	const sf::Vector2f&					GetPosition() const { return _Position; }
+	const sf::Vector2f&					GetVelocity() const { return _Velocity; }
 
 	void								SetRotation( float vRotation ) { _vRotation = vRotation; }
 	void								AccelerateRotation( float vRotationSpeedChange ) { _vRotationSpeedIncrease += vRotationSpeedChange; }
