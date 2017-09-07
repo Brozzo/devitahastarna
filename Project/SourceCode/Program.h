@@ -4,7 +4,7 @@
 
 #include <SFML/Window/Event.hpp>
 #include <SFML/Audio.hpp>
-#include <SFML/Network/UdpSocket.hpp>
+#include <SFML/Network.hpp>
 
 #include <memory>
 #include <array>
@@ -35,7 +35,6 @@ private:
 	CShip													_Player;
 	sf::Music												_Music;
 	sf::Sound												_PlayerSound;
-	sf::UdpSocket											_Socket;
 };
 
 template<typename ...T>

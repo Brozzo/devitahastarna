@@ -1,6 +1,7 @@
 #include "Program.h"
 #include "Resources.h"
 
+#include <iostream>
 #include <cmath>
 
 
@@ -115,6 +116,32 @@ void CProgram::Update()
 	if ( _PressedKeys[sf::Keyboard::Space] )
 	{
 		_Player.Accelerate( PlayerToCenter * 0.0001f );
+	}
+	if ( _PressedKeys[sf::Keyboard::O] )
+	{
+		sf::TcpListener listener;
+
+		// bind the listener to a port
+		if (listener.listen(53000) != sf::Socket::Done)
+		{
+			std::cout << "error!";
+		}
+
+		// accept a new connection
+		sf::TcpSocket client;
+		if (listener.accept(client) != sf::Socket::Done)
+		{
+			std::cout << "error!";
+		}
+	}
+	if ( _PressedKeys[sf::Keyboard::P] )
+	{
+		sf::TcpSocket socket;
+		sf::Socket::Status status = socket.connect("192.168.1.166", 53000);
+		if (status != sf::Socket::Done)
+		{
+			std::cout << "error!";
+		}
 	}
 
 	_Player.Update();
