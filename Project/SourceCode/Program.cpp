@@ -17,7 +17,7 @@ std::unique_ptr<sf::RenderWindow> CProgram::ReleaseSFWindow()
 void CProgram::Run()
 {
 	_Player.SetSprite( std::make_unique<sf::Sprite>( *NTextures::GetTexture( NImages::EImages::PLAYER ) ) );
-	_Player.SetPosition( 500, 500 );
+	_Player.SetPosition( 100, 100 );
 	_Player.SetRotation( 10.0f );
 	_PressedKeys.fill( false );
 	_Music.openFromFile( NMusic::GetFullPath( NMusic::EMusic::MAIN_THEME ));
