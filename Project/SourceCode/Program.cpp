@@ -19,12 +19,7 @@ void CProgram::Run()
 	_Player.SetSprite( std::make_unique<sf::Sprite>( *NTextures::GetTexture( NImages::EImages::PLAYER ) ) );
 	_Player.SetPosition( 500, 500 );
 	_Player.SetRotation( 10.0f );
-	_PressedKeys[sf::Keyboard::S] = false; //Bad solution to make every key not pressed from the beginning. Will fix it later!
-	_PressedKeys[sf::Keyboard::A] = false;
-	_PressedKeys[sf::Keyboard::D] = false;
-	_PressedKeys[sf::Keyboard::Q] = false;
-	_PressedKeys[sf::Keyboard::E] = false;
-	_PressedKeys[sf::Keyboard::Space] = false;
+	_PressedKeys.fill( false );
 	_Music.openFromFile( NMusic::GetFullPath( NMusic::EMusic::MAIN_THEME ));
 	_Music.setLoop(true);
 	_Music.play();
@@ -32,7 +27,6 @@ void CProgram::Run()
 	buffer.loadFromFile( NSounds::GetFullPath( NSounds::ESounds::TEST_SOUND ));
 	_PlayerSound.setBuffer(buffer);
 	_PlayerSound.setLoop(true);
-	_PlayerSound.setVolume(50);
 	_PlayerSound.play();
 	sf::Clock clock;
 	clock.restart();
@@ -76,11 +70,13 @@ void CProgram::HandleInput()
 
 void CProgram::HandleKeyPressed( const sf::Event::KeyEvent& event )
 {
-	_PressedKeys[event.code] = true;
+	if ( 0 <= event.code && event.code < sf::Keyboard::KeyCount ) //C: Some weird keys has code -1.
+		_PressedKeys[event.code] = true;
 }
 void CProgram::HandleKeyReleased( const sf::Event::KeyEvent& event )
 {
-	_PressedKeys[event.code] = false;
+	if ( 0 <= event.code && event.code < sf::Keyboard::KeyCount )
+		_PressedKeys[event.code] = false;
 }
 
 void CProgram::Update()
@@ -120,6 +116,7 @@ void CProgram::Update()
 	{
 		_Player.Accelerate( PlayerToCenter * 0.0001f );
 	}
+
 	_Player.Update();
 
 	_Music.setPitch( velocity / 10.0f + 1 );

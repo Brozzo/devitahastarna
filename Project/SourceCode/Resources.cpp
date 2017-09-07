@@ -40,7 +40,7 @@ const std::string& NMusic::GetFullPath( EMusic music )
 {
 	static const std::array< std::string, size_t( EMusic::NUM_OF_MUSIC ) > Paths
 	{
-		MusicPath + "main_theme.wav",
+		MusicPath + "main_theme.ogg",
 	};
 	assert( size_t( music ) < Paths.size() );
 	return Paths[size_t( music )];
