@@ -17,16 +17,13 @@ std::unique_ptr<sf::RenderWindow> CProgram::ReleaseSFWindow()
 
 void CProgram::Run()
 {
-	_Player.SetSprite( std::make_unique<sf::Sprite>( *NTextures::GetTexture( NImages::EImages::PLAYER ) ) );
+	_Player.SetSprite( std::make_unique<sf::Sprite>( CResources::AccessTexture( NImages::EImages::PLAYER ) ) );
 	_Player.SetPosition( 100, 100 );
 	_Player.SetRotation( 10.0f );
-	_PressedKeys.fill( false );
-	_Music.openFromFile( NMusic::GetFullPath( NMusic::EMusic::MAIN_THEME ));
-	_Music.setLoop(true);
-	_Music.play();
-	sf::SoundBuffer buffer;
-	buffer.loadFromFile( NSounds::GetFullPath( NSounds::ESounds::TEST_SOUND ));
-	_PlayerSound.setBuffer(buffer);
+	_pMusic = &CResources::AccessMusic( NMusic::EMusic::MAIN_THEME );
+	_pMusic->setLoop(true);
+	_pMusic->play();
+	_PlayerSound.setBuffer( CResources::AccessSound( NSounds::ESounds::TEST_SOUND ) );
 	_PlayerSound.setLoop(true);
 	_PlayerSound.play();
 	sf::Clock clock;
@@ -146,7 +143,7 @@ void CProgram::Update()
 
 	_Player.Update();
 
-	_Music.setPitch( velocity / 10.0f + 1 );
+	_pMusic->setPitch( velocity / 10.0f + 1 );
 
 	std::vector<const sf::Sprite*> Sprites;
 	if ( const sf::Sprite* pPlayerSprite = _Player.GetSprite() )

@@ -33,11 +33,13 @@ private:
 	std::unique_ptr<sf::RenderWindow>						_pSFWindow;
 	std::array< bool, sf::Keyboard::KeyCount >				_PressedKeys;
 	CShip													_Player;
-	sf::Music												_Music;
+	sf::Music*												_pMusic = nullptr;
 	sf::Sound												_PlayerSound;
 };
 
 template<typename ...T>
 CProgram::CProgram( T ...t )
 	: _pSFWindow( std::make_unique<sf::RenderWindow>( t... ) )
-{}
+{
+	_PressedKeys.fill( false );
+}
