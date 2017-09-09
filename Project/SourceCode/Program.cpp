@@ -22,6 +22,7 @@ void CProgram::Run()
 	_Player.SetRotation( 10.0f );
 	_pMusic = &CResources::AccessMusic( NMusic::EMusic::MAIN_THEME );
 	_pMusic->setLoop(true);
+	_pMusic->setVolume( 0 ); //Temporarily turn music of from the start.
 	_pMusic->play();
 	_PlayerSound.setBuffer( CResources::AccessSound( NSounds::ESounds::TEST_SOUND ) );
 	_PlayerSound.setLoop(true);
@@ -114,6 +115,19 @@ void CProgram::Update()
 	{
 		_Player.Accelerate( PlayerToCenter * 0.0001f );
 	}
+	if ( _PressedKeys[sf::Keyboard::Num1] ) //Mute the music.
+	{
+		_pMusic->setVolume( 0 );
+	}
+	if ( _PressedKeys[sf::Keyboard::Num2] ) //Mute the music
+	{
+		_pMusic->setVolume( 30 );
+	}
+	if ( _PressedKeys[sf::Keyboard::Num3] ) //Mute the music
+	{
+		_pMusic->setVolume( 100 );
+	}
+/*
 	if ( _PressedKeys[sf::Keyboard::O] )
 	{
 		sf::TcpListener listener;
@@ -140,6 +154,7 @@ void CProgram::Update()
 			std::cout << "error!";
 		}
 	}
+*/
 
 	_Player.Update();
 
