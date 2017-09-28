@@ -18,6 +18,7 @@ std::unique_ptr<sf::RenderWindow> CProgram::ReleaseSFWindow()
 void CProgram::Run()
 {
 	_Player.SetSprite( std::make_unique<sf::Sprite>( CResources::AccessTexture( NImages::EImages::PLAYER ) ) );
+	_pBackground = std::make_unique<sf::Sprite>( CResources::AccessTexture( NImages::EImages::BACKGROUND ) );
 	_Player.SetPosition( 100, 100 );
 	_Player.SetRotation( 10.0f );
 	_pMusic = &CResources::AccessMusic( NMusic::EMusic::MAIN_THEME );
@@ -114,6 +115,7 @@ void CProgram::Update()
 	if ( _PressedKeys[sf::Keyboard::Space] )
 	{
 		_Player.Accelerate( PlayerToCenter * 0.0001f );
+		_vStarPower += std::sqrt( std::abs( PlayerToCenter.x * _Player.GetVelocity().x + PlayerToCenter.y * _Player.GetVelocity().y ) );
 	}
 	if ( _PressedKeys[sf::Keyboard::Num1] ) //Mute the music.
 	{
@@ -167,6 +169,34 @@ void CProgram::Update()
 	}
 
 	_pSFWindow->clear();
+	{
+		if ( _pBackground )
+		{
+			_pSFWindow->draw( *_pBackground );
+		}
+		// Draw stars
+		auto StarPositions = [this]()
+		{
+			constexpr int nStars = 500;
+			std::array<sf::Vector2f, nStars> Ret;
+			for ( int i = 0; i < nStars; ++i )
+			{
+				Ret[i].x = float( ( std::sin( 7 * i ) + 1.0 ) * _pSFWindow->getSize().x / 2
+							+ std::cos( 2 * i + _vStarPower / 10000 ) * 0.01 * std::sqrt( _vStarPower ) );
+				Ret[i].y = float( ( std::cos( 23 * i ) + 1.0 ) * _pSFWindow->getSize().y / 2
+							+ std::sin( i + _vStarPower / 10000 ) * 0.01 * std::sqrt( _vStarPower ) );
+			}
+			return Ret;
+		}();
+		sf::RectangleShape Star( sf::Vector2f( 1.0f, 1.0f ) );
+		Star.setFillColor( sf::Color::White );
+		Star.setOutlineColor( sf::Color::White );
+		for ( const sf::Vector2f& StarPosition : StarPositions )
+		{
+			Star.setPosition( StarPosition.x, StarPosition.y );
+			_pSFWindow->draw( Star );
+		}
+	}
 	for ( const sf::Sprite* pSprite : Sprites )
 	{
 		_pSFWindow->draw( *pSprite );

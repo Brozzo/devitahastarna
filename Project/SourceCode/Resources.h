@@ -54,12 +54,14 @@ namespace NImages
 	{
 		TEST_IMAGE,
 		PLAYER,
+		BACKGROUND,
 		NUM_OF,
 	};
 	static const std::array< std::string, size_t( EImages::NUM_OF ) > FileNames
 	{
 		"image.png",
 		"ship.png",
+		"background.jpg",
 	};
 }
 namespace NMusic

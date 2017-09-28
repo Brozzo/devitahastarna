@@ -33,6 +33,8 @@ private:
 	std::unique_ptr<sf::RenderWindow>						_pSFWindow;
 	std::array< bool, sf::Keyboard::KeyCount >				_PressedKeys;
 	CShip													_Player;
+	std::unique_ptr<sf::Sprite>								_pBackground;
+	double													_vStarPower = 0.0;
 	sf::Music*												_pMusic = nullptr;
 	sf::Sound												_PlayerSound;
 };
